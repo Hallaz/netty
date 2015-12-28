@@ -96,7 +96,7 @@ import java.nio.charset.UnsupportedCharsetException;
  * <h4>Writable bytes</h4>
  *
  * This segment is a undefined space which needs to be filled.  Any operation
- * whose name ends with {@code write} will write the data at the current
+ * whose name starts with {@code write} will write the data at the current
  * {@link #writerIndex() writerIndex} and increase it by the number of written
  * bytes.  If the argument of the write operation is also a {@link ByteBuf},
  * and no source index is specified, the specified buffer's
@@ -494,7 +494,7 @@ public abstract class ByteBuf implements ReferenceCounted, Comparable<ByteBuf> {
      * @param minWritableBytes
      *        the expected minimum number of writable bytes
      * @throws IndexOutOfBoundsException
-     *         if {@link #writerIndex()} + {@code minWritableBytes} > {@link #maxCapacity()}
+     *         if {@link #writerIndex()} + {@code minWritableBytes} &gt; {@link #maxCapacity()}
      */
     public abstract ByteBuf ensureWritable(int minWritableBytes);
 
@@ -506,7 +506,7 @@ public abstract class ByteBuf implements ReferenceCounted, Comparable<ByteBuf> {
      * @param minWritableBytes
      *        the expected minimum number of writable bytes
      * @param force
-     *        When {@link #writerIndex()} + {@code minWritableBytes} > {@link #maxCapacity()}:
+     *        When {@link #writerIndex()} + {@code minWritableBytes} &gt; {@link #maxCapacity()}:
      *        <ul>
      *        <li>{@code true} - the capacity of the buffer is expanded to {@link #maxCapacity()}</li>
      *        <li>{@code false} - the capacity of the buffer is unchanged</li>
